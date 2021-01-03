@@ -54,3 +54,20 @@ Drona (a browser extension) will be a solution to all these problems and be a gr
 5. Navigate to [chrome://extensions](chrome://extensions)
 6. Toggle the `Developer mode` on the top right corner.
 7. Click on `Load unpacked` on the top left corner and open the `/Drona/extension/` folder to load the extension in Chrome.
+
+## :dizzy: Design
+
+### High Level Design
+
+![Drona_high_level_design_diagram](https://user-images.githubusercontent.com/40494926/103472484-224f3380-4db4-11eb-8561-b68a9515c327.png)
+
+
+### Low Level Design
+
+![Drona_low_level_diagram](https://user-images.githubusercontent.com/40494926/103472499-5d516700-4db4-11eb-8b57-67795eb9d07c.png)
+
+## :wrench: Tech Stack
+
+* **Language:**  Python 3.7
+* **Framework:** Flask 1.1.2
+* **Extension:** HTML, CSS, JS
