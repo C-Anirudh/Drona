@@ -8,7 +8,7 @@ var element = `
 </button>
 `
 
-$(document).ready(() => {
+function addButton() {
     $("#top-level-buttons").append(element);
 
     $("#drona-btn").click(() => {
@@ -18,7 +18,7 @@ $(document).ready(() => {
             method: 'POST',
             body: JSON.stringify(url),
             headers:{
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
             } })
         .then(data => { return data.json() })
         .then(res => { 
@@ -26,5 +26,13 @@ $(document).ready(() => {
         })
         .catch(error => console.error('Error:', error));
     });
-});
+}
 
+/*
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    setTimeout(addButton, 7000);
+    console.log("URL CHANGED: " + request.data.url); 
+});
+*/
+//window.addEventListener('DOMContentLoaded', addButton);
+window.addEventListener('yt-page-data-updated', addButton);
