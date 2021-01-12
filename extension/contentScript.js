@@ -3,8 +3,11 @@ chrome.runtime.sendMessage({todo: "showPageAction"});
 const api_url = 'http://127.0.0.1:5000/';
 
 var element = `
-<button type="submit" id="drona-btn"> 
-    &#968; DRONA
+<button title="I want to learn" type="button" id="drona-btn">
+    <div style="overflow: hidden;">
+        <p style="float: left; color:red;">&#968;</p>
+        <p style="float: right;">DRONA</p>
+    </div>
 </button>
 `
 
@@ -12,11 +15,14 @@ function addButton() {
     $("#top-level-buttons").append(element);
 
     $("#drona-btn").click(() => {
-        var url = window.location.href; // Returns full URL
-        console.log(url);
+        let videoURL = window.location.href; // Returns full URL
+        let params = (new URL(videoURL)).searchParams;
+        let videoID = params.get("v");
+        console.log(videoID);
+
         fetch(api_url, {
             method: 'POST',
-            body: JSON.stringify(url),
+            body: JSON.stringify(videoID),
             headers:{
             'Content-Type': 'application/json'
             } })
