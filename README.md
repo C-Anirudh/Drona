@@ -59,12 +59,12 @@ Drona (a browser extension) will be a solution to all these problems and be a gr
 
 ### High Level Design
 
-![Drona_high_level_design_diagram](https://user-images.githubusercontent.com/40494926/103472484-224f3380-4db4-11eb-8561-b68a9515c327.png)
+![Drona_high_level_design_diagram](https://user-images.githubusercontent.com/40494926/104289433-23344380-54df-11eb-8a6c-3cca1f2fe499.png)
 
 
-### Low Level Design
+### Backend - Low Level Design
 
-![Drona_low_level_diagram](https://user-images.githubusercontent.com/40494926/103472499-5d516700-4db4-11eb-8b57-67795eb9d07c.png)
+![Drona_low_level_diagram](https://user-images.githubusercontent.com/40494926/104289439-24fe0700-54df-11eb-9ea9-7a451c0c5ecf.png)
 
 ## :wrench: Tech Stack
 
