@@ -12,4 +12,4 @@ def getTranscript(videoID):
     for child in root:
         transcript = transcript + " " + child.text
 
-    print(transcript)
+    return transcript
