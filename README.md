@@ -53,7 +53,11 @@ Drona (a browser extension) will be a solution to all these problems and be a gr
     ```
         $ pip install -r requirements.txt
     ```
-4. Start the Flask server
+4. Run `setup.py` to download additional requirements
+    ```bash
+        $ python setup.py 
+    ```
+5. Start the Flask server
     
     For Linux:
     ```
@@ -69,9 +73,9 @@ Drona (a browser extension) will be a solution to all these problems and be a gr
 
 ### Loading the extension in Chrome
 
-5. Navigate to [chrome://extensions](chrome://extensions)
-6. Toggle the `Developer mode` on the top right corner.
-7. Click on `Load unpacked` on the top left corner and open the `/Drona/extension/` folder to load the extension in Chrome.
+6. Navigate to [chrome://extensions](chrome://extensions)
+7. Toggle the `Developer mode` on the top right corner.
+8. Click on `Load unpacked` on the top left corner and open the `/Drona/extension/` folder to load the extension in Chrome.
 
 ## :dizzy: Design
 
