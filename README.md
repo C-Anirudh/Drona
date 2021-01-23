@@ -34,18 +34,36 @@ Drona (a browser extension) will be a solution to all these problems and be a gr
 
 ### Setting up Flask Server
 
-2. Create a python 3 virtualenv, and activate the environment.
+2. Create a python 3 virtualenv inside the `backend` folder, and activate the environment.
     ```bash
+        $ cd backend
         $ virtualenv -p python3 venv
-        $ source venv/bin/activate
+    ```
+
+    To activate in Linux:
+    ```bash
+        $ source venv/bin/activate 
+    ```
+
+    To activate in Windows:
+    ```bash
+        > venv/Scripts/activate.bat
     ```   
 3. Install the project dependencies from `requirements.txt`
     ```
         $ pip install -r requirements.txt
     ```
 4. Start the Flask server
+    
+    For Linux:
     ```
         $ export FLASK_APP=app.py
+        $ flask run
+    ```
+
+    For Windows:
+    ```
+        $ set FLASK_APP=app.py
         $ flask run
     ```
 
