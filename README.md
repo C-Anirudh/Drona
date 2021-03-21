@@ -6,7 +6,6 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/C-Anirudh/Drona/graphs/commit-activity)
 [![GitHub license](https://img.shields.io/github/license/C-Anirudh/Drona.svg)](https://github.com/C-Anirudh/Drona/blob/master/LICENSE)
-[![HitCount](http://hits.dwyl.io/C-Anirudh/badges.svg)](http://hits.dwyl.io/C-Anirudh/badges)
 
 [![GitHub issues](https://img.shields.io/github/issues/C-Anirudh/Drona.svg)](https://GitHub.com/C-Anirudh/Drona/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/C-Anirudh/Drona.svg)](https://GitHub.com/C-Anirudh/Drona/pull/)
@@ -46,8 +45,8 @@ Drona (a browser extension) will be a solution to all these problems and be a gr
     ```
 
     To activate in Windows:
-    ```bash
-        > venv/Scripts/activate.bat
+    ```Pu
+        > venv\Scripts\activate.bat
     ```   
 3. Install the project dependencies from `requirements.txt`
     ```
