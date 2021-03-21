@@ -1,7 +1,7 @@
 import requests
 import xml.etree.ElementTree as ET
 
-def getTranscript(videoID):
+def get_video_transcript(videoID):
     transcript = " "
     URL = 'http://video.google.com/timedtext?lang=en&v=' + videoID
     r = requests.get(url = URL) 
