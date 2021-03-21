@@ -1,4 +1,6 @@
-# DRONA
+<img src="https://github.com/C-Anirudh/Drona/blob/main/extension/assets/Drona.jpg?raw=true" alt="drawing" width="300"/>
+
+#
 
 [![GitHub watchers](https://img.shields.io/github/watchers/C-Anirudh/Drona.svg?style=social&label=Watch&maxAge=2592000)](https://github.com/C-Anirudh/Drona/watchers/)
 [![GitHub stars](https://img.shields.io/github/stars/C-Anirudh/Drona.svg?style=social&label=Star&maxAge=2592000)](https://github.com/C-Anirudh/Drona/stargazers/)
