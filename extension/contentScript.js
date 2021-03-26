@@ -15,6 +15,12 @@ var element = `
 </button>
 `
 
+var summary = `
+<div>
+<h1 style="letter-spacing:3px; color:black; margin-bottom:5px;">Summary</h1>
+</div>
+`
+
 function addDronaButton() {
     $("#top-level-buttons").append(element);
     $("#drona-btn").click(() => {
@@ -32,6 +38,16 @@ function addDronaButton() {
         .then(data => { return data.json() })
         .then(res => { 
             console.log(res);
+            let h = document.createElement("H4");
+            let d = document.createTextNode(res);
+            h.appendChild(d);
+            $("#meta-contents").append(summary);
+            h.style.letterSpacing="1.5px";
+            h.style.lineHeight="1.6";
+            h.style.fontSize="14px";
+            h.style.border="2px solid black";
+            h.style.padding="5px";
+            $("#meta-contents").append(h);
         })
         .catch(error => console.error('Error:', error));
     });
