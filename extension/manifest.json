@@ -4,11 +4,11 @@
     "version": "1.0",
     "description": "Drona is a chrome extension that helps students to learn from YouTube videos",
     "icons": {
-        "128": "assets/icon128.png",
-        "48": "assets/icon48.png"
+        "128": "assets/img/icon128.png",
+        "48": "assets/img/icon48.png"
     },
     "page_action": {
-        "default": "icon48.png",
+        "default": "assets/img/icon48.png",
         "default_popup": "popup.html",
         "default_title": "Drona"
     },
@@ -21,8 +21,8 @@
     "content_scripts": [
         {
             "matches": ["*://*.youtube.com/*"],
-            "js": ["jquery-3.5.1.min.js", "contentScript.js"],
-            "css": ["content.css"],
+            "js": ["assets/js/jquery-3.5.1.min.js", "assets/js/bootstrap.min.js", "contentScript.js"],
+            "css": ["assets/css/bootstrap.min.css", "content.css"],
             "run_at": "document_start"
         }
     ],
