@@ -1,4 +1,4 @@
-<img src="https://github.com/C-Anirudh/Drona/blob/main/extension/assets/Drona.jpg?raw=true" alt="drawing" width="300"/>
+<img src="https://github.com/C-Anirudh/Drona/blob/main/extension/assets/img/Drona.jpg?raw=true" alt="Drona" width="300"/>
 
 #
 
