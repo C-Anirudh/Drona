@@ -60,7 +60,7 @@ def run_summarization(text):
     sentences = sent_tokenize(text)
     sentence_scores = _score_sentences(sentences, freq_table)
     threshold = _find_average_score(sentence_scores)
-    summary = _generate_summary(sentences, sentence_scores, 0.9 * threshold)
+    summary = _generate_summary(sentences, sentence_scores, 0.75 * threshold)
     return summary
 
 def create_summary(transcript):

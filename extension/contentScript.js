@@ -28,18 +28,18 @@ function addDronaButton() {
         let videoParams = (new URL(videoURL)).searchParams;
         let videoID = videoParams.get("v");
         console.log("ID of the YouTube video : " + videoID);
-    
-        fetch(api_url, {
-            method: 'POST',
-            body: JSON.stringify(videoID),
-            headers:{
-            'Content-Type': 'application/json'
-            } })
-        .then(data => { return data.json() })
-        .then(res => { 
-            console.log(res);
+        let json_data;
+        const request = async () => {
+            const response = await fetch(api_url, {
+                method: 'POST',
+                body: JSON.stringify(videoID),
+                headers:{
+                'Content-Type': 'application/json'
+                }});
+            json_data = await response.json();
+            console.log(json_data);
             let h = document.createElement("H4");
-            let d = document.createTextNode(res);
+            let d = document.createTextNode(json_data);
             h.appendChild(d);
             $("#meta-contents").append(summary);
             h.style.letterSpacing="1.5px";
@@ -48,8 +48,8 @@ function addDronaButton() {
             h.style.border="2px solid black";
             h.style.padding="5px";
             $("#meta-contents").append(h);
-        })
-        .catch(error => console.error('Error:', error));
+        }
+        request();
     });
 }
 
