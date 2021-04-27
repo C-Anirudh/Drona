@@ -33,7 +33,11 @@
     ```bash
         $ python setup.py 
     ```
-5. Start the Flask server
+5. Install `ffmpeg`
+    ```bash
+        $ sudo apt install ffmpeg 
+    ```
+6. Start the Flask server
     
     For Linux:
     ```
