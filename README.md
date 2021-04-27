@@ -31,12 +31,12 @@ Instructions to install Drona can be found in [INSTALLATION.md](https://github.c
 
 ### High Level Design
 
-![Drona_high_level_design_diagram](https://user-images.githubusercontent.com/40494926/104289433-23344380-54df-11eb-8a6c-3cca1f2fe499.png)
+![Drona_high_level_design_diagram](https://user-images.githubusercontent.com/40494926/116289855-7ee5bc80-a7b0-11eb-82c9-2d6e23d34c28.png)
 
 
 ### Backend - Low Level Design
 
-![Drona_low_level_diagram](https://user-images.githubusercontent.com/40494926/104289439-24fe0700-54df-11eb-9ea9-7a451c0c5ecf.png)
+![Drona_low_level_diagram](https://user-images.githubusercontent.com/40494926/116289853-7d1bf900-a7b0-11eb-88d2-3e2e5e3f03b3.png)
 
 ## :wrench: Tech Stack
 
