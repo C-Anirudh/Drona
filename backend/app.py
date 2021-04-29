@@ -3,7 +3,7 @@ from flask import request
 from flask_cors import CORS
 from transcript import get_video_transcript
 from summarizer import create_summary
-#from mcq import create_mcq
+from mcq import create_mcq
 
 import json
 
@@ -17,7 +17,7 @@ def index():
     transcript = get_video_transcript(request_json)
     print('[LOG] - Transcript - [app.py]\n', transcript)
     summary = create_summary(transcript)
-    #mcqs = create_mcq(summary,transcript)
+    create_mcq(summary, transcript)
     print('[LOG] - Video Summary - [app.py]\n', summary)
     #print(mcqs)
     return json.dumps(summary)

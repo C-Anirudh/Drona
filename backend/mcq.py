@@ -1,40 +1,43 @@
-import nltk
 import pprint
 import itertools
 import re
-import pkelib as pke
+import pke
 import string
 from nltk.corpus import stopwords
 
-def get_nouns_multipartite(transcript,summarized_text):
-    out=[]
+# For sentence mapping
+from nltk.tokenize import sent_tokenize
+from flashtext import KeywordProcessor
 
+# For generating MCQs
+import requests
+import json
+import re
+import random
+from pywsd.similarity import max_similarity
+from pywsd.lesk import adapted_lesk
+from pywsd.lesk import simple_lesk
+from pywsd.lesk import cosine_lesk
+from nltk.corpus import wordnet as wn
+
+def get_nouns_multipartite(text):
+    out=[]
     extractor = pke.unsupervised.MultipartiteRank()
-    extractor.load_document(input=transcript)
+    extractor.load_document(input=text)
+    
     pos = {'PROPN'}
+    
     stoplist = list(string.punctuation)
     stoplist += ['-lrb-', '-rrb-', '-lcb-', '-rcb-', '-lsb-', '-rsb-']
     stoplist += stopwords.words('english')
     extractor.candidate_selection(pos=pos, stoplist=stoplist)
-
-    extractor.candidate_weighting(alpha=1.1,
-                                  threshold=0.75,
-                                  method='average')
+    
+    extractor.candidate_weighting(alpha=1.1, threshold=0.75, method='average')
     keyphrases = extractor.get_n_best(n=20)
-
     for key in keyphrases:
         out.append(key[0])
-    filtered_keys=[]
-    for keyword in out:
-        if keyword.lower() in summarized_text.lower():
-            filtered_keys.append(keyword)
-
     return out
 
-
-
-from nltk.tokenize import sent_tokenize
-from flashtext import KeywordProcessor
 
 def tokenize_sentences(text):
     sentences = [sent_tokenize(text)]
@@ -53,25 +56,14 @@ def get_sentences_for_keyword(keywords, sentences):
         keywords_found = keyword_processor.extract_keywords(sentence)
         for key in keywords_found:
             keyword_sentences[key].append(sentence)
-
     for key in keyword_sentences.keys():
         values = keyword_sentences[key]
         values = sorted(values, key=len, reverse=True)
         keyword_sentences[key] = values
     return keyword_sentences
 
-
-import requests
-import json
-import re
-import random
-from pywsd.similarity import max_similarity
-from pywsd.lesk import adapted_lesk
-#from pywsd.lesk import simple_lesk
-#from pywsd.lesk import cosine_lesk
-
 # Distractors from Wordnet
-def get_distractors_wordnet(syn,word):
+def get_distractors_wordnet(syn, word):
     distractors=[]
     word= word.lower()
     orig_word = word
@@ -91,14 +83,14 @@ def get_distractors_wordnet(syn,word):
             distractors.append(name)
     return distractors
 
-def get_wordsense(sent,word):
+def get_wordsense(sent, word):
     word= word.lower()
     
     if len(word.split())>0:
         word = word.replace(" ","_")
     
     
-    synsets = wordnet.synsets(word,'n')
+    synsets = wn.synsets(word,'n')
     if synsets:
         wup = max_similarity(sent, word, 'wup', pos='n')
         adapted_lesk_output =  adapted_lesk(sent, word, pos='n')
@@ -107,6 +99,7 @@ def get_wordsense(sent,word):
     else:
         return None
 
+# Distractors from http://conceptnet.io/
 def get_distractors_conceptnet(word):
     word = word.lower()
     original_word= word
@@ -128,45 +121,57 @@ def get_distractors_conceptnet(word):
                    
     return distractor_list
 
+def create_mcq(summarized_text, full_text):
+    keywords = get_nouns_multipartite(full_text) 
+    print('[LOG] - Keywords extracted from summary - [mcq.py]\n', keywords)
+    filtered_keys=[]
+    for keyword in keywords:
+        if keyword.lower() in summarized_text.lower():
+            filtered_keys.append(keyword)
+    print('[LOG] - Filtered keywords - [mcq.py]\n', filtered_keys)
 
-def output_def(keyword_sentence_mapping):
+    
+    sentences = tokenize_sentences(summarized_text)
+    keyword_sentence_mapping = get_sentences_for_keyword(filtered_keys, sentences)
+    print('[LOG] - Keyword sentence mapping - [mcq.py]\n', keyword_sentence_mapping)
+
+
+    index = 1
+    print ("#############################################################################")
+    print ("NOTE::::::::  Since the algorithm might have errors along the way, wrong answer choices generated might not be correct for some questions. ")
+    print ("#############################################################################\n\n")
+
     key_distractor_list = {}
+
     for keyword in keyword_sentence_mapping:
+        if keyword_sentence_mapping[keyword][0] == '':
+            print("Unable to produce MCQs")
+            return ''
+        
         wordsense = get_wordsense(keyword_sentence_mapping[keyword][0],keyword)
         if wordsense:
-            distractors = get_distractors_wordnet(wordsense,keyword)
+            distractors = get_distractors_wordnet(wordsense, keyword)
             if len(distractors) ==0:
                 distractors = get_distractors_conceptnet(keyword)
             if len(distractors) != 0:
                 key_distractor_list[keyword] = distractors
         else:
-            
             distractors = get_distractors_conceptnet(keyword)
             if len(distractors) != 0:
                 key_distractor_list[keyword] = distractors
-
-    index = 1
 
     for each in key_distractor_list:
         sentence = keyword_sentence_mapping[each][0]
         pattern = re.compile(each, re.IGNORECASE)
         output = pattern.sub( " _______ ", sentence)
-        
-        #print ("%s)"%(index),output)
+        print ("%s)"%(index),output)
         choices = [each.capitalize()] + key_distractor_list[each]
         top4choices = choices[:4]
         random.shuffle(top4choices)
         optionchoices = ['a','b','c','d']
-        #for idx,choice in enumerate(top4choices):
-            #print ("\t",optionchoices[idx],")"," ",choice)
-        #print ("\nMore options: ", choices[4:20],"\n\n")
+        for idx,choice in enumerate(top4choices):
+            print ("\t",optionchoices[idx],")"," ",choice)
+        print ("\nMore options: ", choices[4:20],"\n\n")
         index = index + 1
-        hari_topper= {output: output , top4:top4choices}
-    return hari_topper
-        
-def create_mcq(summary, transcript):
-    keywords = get_nouns_multipartite(transcript, summary)
-    sentences = tokenize_sentences(transcript)
-    keyword_sentences_mapping = get_sentences_for_keyword(keywords, sentences)
-    return output_def(keyword_sentences_mapping)
+
     
