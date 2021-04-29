@@ -1,7 +1,6 @@
 #drona-btn {
     border:none;
     background-color: transparent;
-    cursor: pointer;
     color: #090909;
     display: block;
     overflow: hidden;
@@ -17,4 +16,94 @@
     font-weight: 400;
     font-stretch: normal;
     margin-bottom: 2px;
+}
+
+.button-ele {
+    background-color:transparent;
+    border: none;
+    outline: none;
+    /* color: white; */
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    /* background: #f3f0f1; */
+    /* margin-bottom: 25px; */
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.05),
+        6px 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+#button-suy {
+    background-color: olivedrab;
+    border: none;
+    outline: none;
+    /* color: white; */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    margin: 4px 2px;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    /* cursor: pointer; */
+    /* background: #f3f0f1; */
+    position: relative;
+    /* background: #f3f0f1; */
+    /* margin-bottom: 25px; */
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.05),
+        6px 6px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.ele-btn {
+    cursor: not-allowed;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+    background-color: #000;
+}
+
+
+
+#summarydisplay, #quizdisplay {
+    letter-spacing:1.5px;
+    line-height:1.6;
+    font-size:14px;
+    /* border:2px solid black; */
+    padding:10px;
+    margin-top: 25px;
+    background: rgba( 255, 255, 255, 0.55 );
+    /* background:transparent; */
+    position: relative;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+   
+}
+
+
+#backimg {
+    background: url("https://github.com/teknas07/Drona_aasets/blob/main/logo.png?raw=true");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    opacity: 0.4;
+}
+
+#summary-btn {
+    display: inline-block;
+}
+
+#quiz-btn {
+    display: inline-block;
 }

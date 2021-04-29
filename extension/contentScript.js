@@ -3,27 +3,75 @@ chrome.runtime.sendMessage({todo: "showPageAction"});
 const api_url = 'http://127.0.0.1:5000/';
 
 var element = `
-<button title="I want to learn" type="button" id="drona-btn">
+<button title="I want to learn" id="drona-btn">
     <div style="overflow: hidden;">
-        <p style="float: left; color:red;">
-            &#968;
-        </p>
-        <p style="float: right;">
-            DRONA
-        </p>
+        <img src="https://github.com/teknas07/Drona_aasets/blob/main/button.png?raw=true" height="35px" width="35px">
     </div>
 </button>
 `
 
 var summary = `
-<div>
-<h1 style="letter-spacing:3px; color:black; margin-bottom:5px;">Summary</h1>
+<div id="summary-btn">
+    <button id="button-suy" style="width:141px; height:43px;">Summary</button>
 </div>
 `
 
+var quiz = `
+<div id="quiz-btn">
+    <button id="button-suy" style="width:141px; height:43px;">Quiz</button>
+</div>
+`
+
+
+var summaryDisplay = `
+<div class="card" id="summarydisplay" style="display:none;">
+  <h5 class="card-header">A summary of the video:</h5>
+  <div class="card-body">
+    <p class="card-text" id="summaryContent">
+        <div id="backimg">
+        </div>        
+    </p>
+  </div>
+</div>
+`
+
+var quizDisplay = `
+<div class="card" id="quizdisplay" style="display:none;">
+  <h5 class="card-header">Quiz questions to test your understanding of the video:</h5>
+  <div class="card-body">
+    <p class="card-text" id="quizContent">
+        <div id="backimg">
+        </div>        
+    </p>
+  </div>
+</div>
+`
+
+function checkSummary() { 
+    var x = document.getElementById("summarydisplay");
+    if (x.style.display=="none"){
+        x.style.display="block";    
+    } else {
+        x.style.display="none";
+    }
+}
+
+function checkQuiz() { 
+    var x = document.getElementById("quizdisplay");
+    if (x.style.display=="none"){
+        x.style.display="block";    
+    } else {
+        x.style.display="none";
+    }
+}
+
 function addDronaButton() {
     $("#top-level-buttons").append(element);
+    document.getElementById("drona-btn").disabled=false;
     $("#drona-btn").click(() => {
+        document.getElementById("drona-btn").classList.add("ele-btn");
+        document.getElementById("drona-btn").disabled=true;
+
         let videoURL = window.location.href; // Returns full URL
         let videoParams = (new URL(videoURL)).searchParams;
         let videoID = videoParams.get("v");
@@ -38,16 +86,23 @@ function addDronaButton() {
                 }});
             json_data = await response.json();
             console.log(json_data);
-            let h = document.createElement("H4");
-            let d = document.createTextNode(json_data);
-            h.appendChild(d);
+            
+            console.log("Here: " + json_data);
             $("#meta-contents").append(summary);
-            h.style.letterSpacing="1.5px";
-            h.style.lineHeight="1.6";
-            h.style.fontSize="14px";
-            h.style.border="2px solid black";
-            h.style.padding="5px";
-            $("#meta-contents").append(h);
+            $("#meta-contents").append(quiz);
+            $("#meta-contents").append(summaryDisplay);
+            $("#meta-contents").append(quizDisplay);
+            $("#summaryContent").append(json_data);
+            $("#summary-btn").click(() => {
+                document.getElementById("button-suy").classList.toggle("button");
+                document.getElementById("quizdisplay").style.display = "none";
+                checkSummary();
+            });
+            $("#quiz-btn").click(() => {
+                document.getElementById("button-suy").classList.toggle("button");
+                document.getElementById("summarydisplay").style.display = "none";
+                checkQuiz();
+            });
         }
         request();
     });
