@@ -14,10 +14,14 @@ CORS(app)
 def index():
     request_json = request.get_json(silent=True)
     print('[LOG] - Video ID :', request_json)
+
     transcript = get_video_transcript(request_json)
     print('[LOG] - Transcript - [app.py]\n', transcript)
+    
     summary = create_summary(transcript)
-    create_mcq(summary, transcript)
     print('[LOG] - Video Summary - [app.py]\n', summary)
-    #print(mcqs)
-    return json.dumps(summary)
+
+    MCQs = create_mcq(summary, transcript)
+    print('[LOG] - MCQs - [app.py]\n', MCQs)
+    
+    return json.dumps({"summary": summary, "mcqs": MCQs})

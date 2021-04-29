@@ -122,6 +122,7 @@ def get_distractors_conceptnet(word):
     return distractor_list
 
 def create_mcq(summarized_text, full_text):
+    MCQs = ''
     keywords = get_nouns_multipartite(full_text) 
     print('[LOG] - Keywords extracted from summary - [mcq.py]\n', keywords)
     filtered_keys=[]
@@ -137,16 +138,10 @@ def create_mcq(summarized_text, full_text):
 
 
     index = 1
-    print ("#############################################################################")
-    print ("NOTE::::::::  Since the algorithm might have errors along the way, wrong answer choices generated might not be correct for some questions. ")
-    print ("#############################################################################\n\n")
 
     key_distractor_list = {}
 
     for keyword in keyword_sentence_mapping:
-        if keyword_sentence_mapping[keyword][0] == '':
-            print("Unable to produce MCQs")
-            return ''
         
         wordsense = get_wordsense(keyword_sentence_mapping[keyword][0],keyword)
         if wordsense:
@@ -164,14 +159,15 @@ def create_mcq(summarized_text, full_text):
         sentence = keyword_sentence_mapping[each][0]
         pattern = re.compile(each, re.IGNORECASE)
         output = pattern.sub( " _______ ", sentence)
-        print ("%s)"%(index),output)
+        MCQs = MCQs + str(index) + ") " + output + "\n"
         choices = [each.capitalize()] + key_distractor_list[each]
         top4choices = choices[:4]
         random.shuffle(top4choices)
         optionchoices = ['a','b','c','d']
         for idx,choice in enumerate(top4choices):
-            print ("\t",optionchoices[idx],")"," ",choice)
-        print ("\nMore options: ", choices[4:20],"\n\n")
+            MCQs = MCQs + "\t" + optionchoices[idx] + ")" + " " + choice + "\n"
         index = index + 1
+
+    return MCQs
 
     

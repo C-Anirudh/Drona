@@ -92,7 +92,8 @@ function addDronaButton() {
             $("#meta-contents").append(quiz);
             $("#meta-contents").append(summaryDisplay);
             $("#meta-contents").append(quizDisplay);
-            $("#summaryContent").append(json_data);
+            $("#summaryContent").append(json_data.summary);
+            $("#quizContent").append(json_data.mcqs);
             $("#summary-btn").click(() => {
                 document.getElementById("button-suy").classList.toggle("button");
                 document.getElementById("quizdisplay").style.display = "none";
