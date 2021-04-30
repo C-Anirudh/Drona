@@ -45,19 +45,24 @@ var quizDisplay = `
 `
 
 var loader = `
-<div id="loader">
-<h2 id="loaderMsg"><img src="https://github.com/teknas07/Drona_aasets/blob/main/button.png?raw=true" height="35px" width="35px">LOADING</h2>
-<ul class="loader">
-  <li class="center"></li>
-  <li class="item item-1"></li>
-  <li class="item item-2"></li>
-  <li class="item item-3"></li>
-  <li class="item item-4"></li>
-  <li class="item item-5"></li>
-  <li class="item item-6"></li>
-  <li class="item item-7"></li>
-  <li class="item item-8"></li>
-</ul>
+<div class="container" id="loader">
+    <br><br><br>
+    <div class="flex">
+    <ul class="loader">
+        <li class="center"></li>
+        <li class="item item-1"></li>
+        <li class="item item-2"></li>
+        <li class="item item-3"></li>
+        <li class="item item-4"></li>
+        <li class="item item-5"></li>
+        <li class="item item-6"></li>
+        <li class="item item-7"></li>
+        <li class="item item-8"></li>
+    </ul>
+    </div>
+    <div class="load-text">
+        Loading Drona...
+    </div>
 </div>
 `
 

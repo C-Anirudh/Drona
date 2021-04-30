@@ -53,8 +53,12 @@
 }
 
 /* Loader CSS */
-#loaderMsg {
-    color: red;
+.load-text {
+    padding-top: 15px;
+    font-weight: bolder;
+    text-align: center;
+    font: 18pt "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #3c57dd;
 }
 
 .loader {
