@@ -1,76 +1,30 @@
 #drona-btn {
-    border:none;
+    border: none;
     background-color: transparent;
-    color: #090909;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    font: 400 13.3333px Arial;
-    font-style: normal;
-    font-variant-ligatures: normal;
-    font-variant-caps: normal;
-    font-variant-numeric: normal;
-    font-variant-east-asian: normal;
-    font-weight: 400;
-    font-stretch: normal;
     margin-bottom: 2px;
 }
 
-.button-ele {
-    background-color:transparent;
-    border: none;
-    outline: none;
-    /* color: white; */
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-family: "Montserrat", sans-serif;
-    position: relative;
-    /* background: #f3f0f1; */
-    /* margin-bottom: 25px; */
-    border-radius: 10px;
-    text-align: center;
-    transition: all 0.1s ease-in-out;
-    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.05),
-        6px 6px 10px rgba(0, 0, 0, 0.5);
-}
-
-#button-suy {
-    background-color: olivedrab;
-    border: none;
-    outline: none;
-    /* color: white; */
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 20px;
-    margin: 4px 2px;
-    font-family: "Montserrat", sans-serif;
-    text-transform: uppercase;
-    /* cursor: pointer; */
-    /* background: #f3f0f1; */
-    position: relative;
-    /* background: #f3f0f1; */
-    /* margin-bottom: 25px; */
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
-    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.05),
-        6px 6px 10px rgba(0, 0, 0, 0.5);
-    color: white;
-}
-
-.ele-btn {
+.drona-btn-clicked {
     cursor: not-allowed;
     opacity: 0.4;
     filter: alpha(opacity=40); /* msie */
     background-color: #000;
 }
 
-
+#summary-btn, #quiz-btn {
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-weight: bolder;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    padding: 10px 20px;
+    margin: 4px 2px;
+}
 
 #summarydisplay, #quizdisplay {
     letter-spacing:1.5px;
@@ -87,9 +41,7 @@
     -webkit-backdrop-filter: blur( 10px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-   
 }
-
 
 #backimg {
     background: url("https://github.com/teknas07/Drona_aasets/blob/main/logo.png?raw=true");
@@ -100,10 +52,147 @@
     opacity: 0.4;
 }
 
-#summary-btn {
-    display: inline-block;
+/* Loader CSS */
+#loaderMsg {
+    color: red;
 }
 
-#quiz-btn {
-    display: inline-block;
-}
+.loader {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .loader .center {
+    width: 40px;
+    height: 40px;
+    background: #3c57dd;
+    border-radius: 50%;
+    animation: center 3.2s ease-in-out infinite;
+  }
+  .loader .item {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: #3c57dd;
+    border-radius: 50%;
+  }
+
+  .item-1 {
+    animation: anim-1 3.2s ease-in-out infinite 0.2s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-1 {
+    0%, 60%, 100% {
+      transform: rotate(45deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(45deg) translateX(0) scale(1.5);
+    }
+  }
+
+  .item-2 {
+    animation: anim-2 3.2s ease-in-out infinite 0.4s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-2 {
+    0%, 60%, 100% {
+      transform: rotate(90deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(90deg) translateX(0) scale(1.5);
+    }
+  }
+  .item-3 {
+    animation: anim-3 3.2s ease-in-out infinite 0.6s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-3 {
+    0%, 60%, 100% {
+      transform: rotate(135deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(135deg) translateX(0) scale(1.5);
+    }
+  }
+  .item-4 {
+    animation: anim-4 3.2s ease-in-out infinite 0.8s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-4 {
+    0%, 60%, 100% {
+      transform: rotate(180deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(180deg) translateX(0) scale(1.5);
+    }
+  }
+  .item-5 {
+    animation: anim-5 3.2s ease-in-out infinite 1s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-5 {
+    0%, 60%, 100% {
+      transform: rotate(225deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(225deg) translateX(0) scale(1.5);
+    }
+  }
+  .item-6 {
+    animation: anim-6 3.2s ease-in-out infinite 1.2s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-6 {
+    0%, 60%, 100% {
+      transform: rotate(270deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(270deg) translateX(0) scale(1.5);
+    }
+  }
+  .item-7 {
+    animation: anim-7 3.2s ease-in-out infinite 1.4s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-7 {
+    0%, 60%, 100% {
+      transform: rotate(315deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(315deg) translateX(0) scale(1.5);
+    }
+  }
+  .item-8 {
+    animation: anim-8 3.2s ease-in-out infinite 1.6s;
+    animation-fill-mode: backwards;
+  }
+  
+  @keyframes anim-8 {
+    0%, 60%, 100% {
+      transform: rotate(360deg) translateX(40px) scale(1);
+    }
+    10%, 50% {
+      transform: rotate(360deg) translateX(0) scale(1.5);
+    }
+  }
+  @keyframes center {
+    0%, 10%, 90%, 100% {
+      transform: scale(0.7);
+    }
+    45%, 55% {
+      transform: scale(1);
+    }
+  }

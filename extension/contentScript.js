@@ -9,19 +9,16 @@ var element = `
     </div>
 </button>
 `
-
-var summary = `
-<div id="summary-btn">
-    <button id="button-suy" style="width:141px; height:43px;">Summary</button>
+var buttons = `
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-outline-primary" id="summary-btn" style="width:141px; height:43px;">
+        <input type="radio" autocomplete="off"> Summary
+    </label>
+    <label class="btn btn-outline-primary" id="quiz-btn" style="width:141px; height:43px;">
+        <input type="radio" autocomplete="off"> Quiz
+    </label>
 </div>
 `
-
-var quiz = `
-<div id="quiz-btn">
-    <button id="button-suy" style="width:141px; height:43px;">Quiz</button>
-</div>
-`
-
 
 var summaryDisplay = `
 <div class="card" id="summarydisplay" style="display:none;">
@@ -47,6 +44,23 @@ var quizDisplay = `
 </div>
 `
 
+var loader = `
+<div id="loader">
+<h2 id="loaderMsg"><img src="https://github.com/teknas07/Drona_aasets/blob/main/button.png?raw=true" height="35px" width="35px">LOADING</h2>
+<ul class="loader">
+  <li class="center"></li>
+  <li class="item item-1"></li>
+  <li class="item item-2"></li>
+  <li class="item item-3"></li>
+  <li class="item item-4"></li>
+  <li class="item item-5"></li>
+  <li class="item item-6"></li>
+  <li class="item item-7"></li>
+  <li class="item item-8"></li>
+</ul>
+</div>
+`
+
 function checkSummary() { 
     var x = document.getElementById("summarydisplay");
     if (x.style.display=="none"){
@@ -69,7 +83,7 @@ function addDronaButton() {
     $("#top-level-buttons").append(element);
     document.getElementById("drona-btn").disabled=false;
     $("#drona-btn").click(() => {
-        document.getElementById("drona-btn").classList.add("ele-btn");
+        document.getElementById("drona-btn").classList.add("drona-btn-clicked");
         document.getElementById("drona-btn").disabled=true;
 
         let videoURL = window.location.href; // Returns full URL
@@ -77,6 +91,7 @@ function addDronaButton() {
         let videoID = videoParams.get("v");
         console.log("ID of the YouTube video : " + videoID);
         let json_data;
+        $("#meta-contents").append(loader);
         const request = async () => {
             const response = await fetch(api_url, {
                 method: 'POST',
@@ -86,21 +101,18 @@ function addDronaButton() {
                 }});
             json_data = await response.json();
             console.log(json_data);
-            
-            console.log("Here: " + json_data);
-            $("#meta-contents").append(summary);
-            $("#meta-contents").append(quiz);
+            document.getElementById("loader").style.display = "none";
+            $("#meta-contents").append(buttons);
             $("#meta-contents").append(summaryDisplay);
             $("#meta-contents").append(quizDisplay);
             $("#summaryContent").append(json_data.summary);
             $("#quizContent").append(json_data.mcqs);
+
             $("#summary-btn").click(() => {
-                document.getElementById("button-suy").classList.toggle("button");
                 document.getElementById("quizdisplay").style.display = "none";
                 checkSummary();
             });
             $("#quiz-btn").click(() => {
-                document.getElementById("button-suy").classList.toggle("button");
                 document.getElementById("summarydisplay").style.display = "none";
                 checkQuiz();
             });
