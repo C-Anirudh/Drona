@@ -159,13 +159,14 @@ def create_mcq(summarized_text, full_text):
         sentence = keyword_sentence_mapping[each][0]
         pattern = re.compile(each, re.IGNORECASE)
         output = pattern.sub( " _______ ", sentence)
-        MCQs = MCQs + str(index) + ") " + output + "\n"
+        MCQs = MCQs + "<b>" + str(index) + ") " + output + " \n </b><br>"
         choices = [each.capitalize()] + key_distractor_list[each]
         top4choices = choices[:4]
         random.shuffle(top4choices)
         optionchoices = ['a','b','c','d']
         for idx,choice in enumerate(top4choices):
-            MCQs = MCQs + "\t" + optionchoices[idx] + ")" + " " + choice + "\n"
+            MCQs = MCQs + "&nbsp;&nbsp;&nbsp;&nbsp; \t " + optionchoices[idx] + ")" + " " + choice + " \n <br>"
+        MCQs = MCQs + "<br>"
         index = index + 1
 
     return MCQs
