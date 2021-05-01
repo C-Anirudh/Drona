@@ -1,7 +1,7 @@
 # Installing Drona
 
-0. Prerequisites: Make sure that you have `Python 3`, `virtualenv`, and `pip` installed.     
-1. Clone the repository
+- Prerequisites: Make sure that you have `Python 3`, `virtualenv`, and `pip` installed.     
+- Clone the repository
    
     ```
         $ git clone https://github.com/C-Anirudh/Drona.git
@@ -10,7 +10,7 @@
 
 ### Setting up Flask Server
 
-2. Create a python 3 virtualenv inside the `backend` folder, and activate the environment.
+- Create a python 3 virtualenv inside the `backend` folder, and activate the environment.
     ```bash
         $ cd backend
         $ virtualenv -p python3 venv
@@ -25,27 +25,37 @@
     ```Pu
         > venv\Scripts\activate.bat
     ```   
-3. Install the project dependencies from `requirements.txt`
-    ```
-        $ pip install -r requirements.txt
-    ```
-4. Run `setup.py` to download additional requirements
+### For Linux
+
+- Run the `setup.sh` bash script to install dependecies (will prompt for sudo password in the end to install `ffmpeg`)
     ```bash
-        $ python setup.py 
+        $ ./setup.sh 
     ```
-5. Install `ffmpeg`
+
+- Start the Flask server
     ```bash
-        $ sudo apt install ffmpeg 
-    ```
-6. Start the Flask server
-    
-    For Linux:
-    ```
-        $ export FLASK_APP=app.py
         $ flask run
     ```
 
-    For Windows:
+### For Windows
+- Install the project dependencies from `requirements.txt`
+    ```
+        $ pip install -r requirements.txt
+    ```
+- Install the python `pke` library
+    ```
+        $ pip install git+https://github.com/boudinfl/pke.git
+    ```
+- Install the spacy `en` model
+    ```
+        $ python -m spacy download en
+    ```
+- Run `setup.py` to download additional requirements
+    ```bash
+        $ python nltk_pack.py 
+    ```
+- Install `ffmpeg`
+- Start the Flask server
     ```
         $ set FLASK_APP=app.py
         $ flask run
