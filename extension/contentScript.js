@@ -3,7 +3,7 @@ chrome.runtime.sendMessage({todo: "showPageAction"});
 const api_url = 'http://127.0.0.1:5000/';
 
 var element = `
-<button title="I want to learn" id="drona-btn">
+<button title="I want to learn"class="drona-btn" id="drona-btn">
     <div style="overflow: hidden;">
         <img src="https://github.com/teknas07/Drona_aasets/blob/main/button.png?raw=true" height="35px" width="35px">
     </div>
@@ -85,9 +85,8 @@ function checkQuiz() {
 }
 
 function addDronaButton() {
-    $("#top-level-buttons").append(element);
-    document.getElementById("drona-btn").disabled=false;
-    $("#drona-btn").click(() => {
+    $('.top-level-buttons').append(element);
+    $(".drona-btn").click(() => {
         document.getElementById("drona-btn").classList.add("drona-btn-clicked");
         document.getElementById("drona-btn").disabled=true;
 
