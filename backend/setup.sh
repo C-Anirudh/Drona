@@ -1,7 +1,7 @@
 #!/bin/bash
-pip install -r requirements.txt
-pip install git+https://github.com/boudinfl/pke.git
-python -m spacy download en
-python nltk_pack.py
-sudo apt install ffmpeg -y
+pip3 install -r requirements.txt
+pip3 install git+https://github.com/boudinfl/pke.git
+python3 -m spacy download en
+python3 nltk_pack.py
+apt-get install ffmpeg -y
 export FLASK_APP=app.py
