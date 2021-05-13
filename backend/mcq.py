@@ -134,15 +134,19 @@ def create_mcq(summarized_text, full_text):
     
     sentences = tokenize_sentences(summarized_text)
     keyword_sentence_mapping = get_sentences_for_keyword(filtered_keys, sentences)
+    for keyword in list(keyword_sentence_mapping):
+        if len(keyword_sentence_mapping[keyword]) == 0:
+            keyword_sentence_mapping.pop(keyword)
     print('[LOG] - Keyword sentence mapping - [mcq.py]\n', keyword_sentence_mapping)
-
 
     index = 1
 
     key_distractor_list = {}
 
+    if not keyword_sentence_mapping:
+        MCQs = '&#9888; Drona couldn\'t generate MCQs for this video.'
+
     for keyword in keyword_sentence_mapping:
-        
         wordsense = get_wordsense(keyword_sentence_mapping[keyword][0],keyword)
         if wordsense:
             distractors = get_distractors_wordnet(wordsense, keyword)
